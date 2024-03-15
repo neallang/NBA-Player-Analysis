@@ -1,0 +1,16 @@
+# Virtual environment directories
+lib/
+lib64/
+Scripts/
+bin/
+include/
+pyvenv.cfg
+*.pyc
+
+# OS and Editor folders
+.DS_Store
+.vscode/
+.idea/
+
+# Environment variables
+.env
