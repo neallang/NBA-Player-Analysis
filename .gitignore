@@ -7,13 +7,63 @@ include/
 pyvenv.cfg
 *.pyc
 
-# OS and Editor folders
-.DS_Store
-.vscode/
-.idea/
+# Bytecode - Interpreter specific
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Metadata
+.eggs/
+*.egg-info/
+*.egg
+develop-eggs/
+dist/
+build/
+sdist/
+downloads/
+eggs/
+parts/
+var/
+.installed.cfg
+
+# Django
+/static/
+/media/
+
+# Local settings
+local_settings.py
 
 # Environment variables
 .env
+*.env.local
+*.env.*.local
 
-# Other
+# OS and Editor folders
+.DS_Store
+Thumbs.db
+.idea/
+*.iml
+*.swp
+*~
+.vscode/
+
+# Man pages
 /share/man/
+
+# Logs
+*.log
+*.csv
+
+# Test coverage
+/coverage/
+*.cover
+
+# Node modules if using Node.js in the project
+node_modules/
+
+# Static files
+/staticfiles/
+
+# Temporary files
+*.tmp
