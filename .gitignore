@@ -67,3 +67,6 @@ node_modules/
 
 # Temporary files
 *.tmp
+
+
+db.sqlite3
