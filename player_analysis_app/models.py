@@ -55,3 +55,16 @@ class Stat(models.Model):
     class Meta:                            #not too sure about this as of right now
         verbose_name = 'Stat'
         verbose_name_plural = 'Stats'
+
+from django.db import models
+
+# Assuming the Player model and other models are already defined above
+
+class Accolade(models.Model):
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, related_name='accolades')
+    title = models.CharField(max_length=255)
+    year = models.IntegerField(help_text="The year the accolade was awarded.")
+    details = models.TextField(blank=True, null=True, help_text="Additional details about the accolade.")
+
+    def __str__(self):
+        return f"{self.title} ({self.year}) - {self.player.name}"
