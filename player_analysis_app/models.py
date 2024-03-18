@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 class Team(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -21,3 +22,36 @@ class Player(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.position} for {self.team.name}"
+
+class Stat(models.Model):
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, related_name='stats')
+    games_played = models.IntegerField()
+    wins = models.IntegerField()
+    losses = models.IntegerField()
+    mpg = models.DecimalField(max_digits=5, decimal_places=2, help_text="Minutes per game")
+    pts = models.DecimalField(max_digits=5, decimal_places=2, help_text="Points per game")
+    fgm = models.IntegerField(help_text="Field Goals Made")
+    fga = models.IntegerField(help_text="Field Goals Attempted")
+    fg_pct = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(0), MaxValueValidator(100)], help_text="Field Goal Percentage")
+    threepm = models.IntegerField(help_text="3 Points Made")
+    threepa = models.IntegerField(help_text="3 Points Attempted")
+    three_pct = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(0), MaxValueValidator(100)], help_text="3 Point Percentage")
+    ftm = models.IntegerField(help_text="Free Throws Made")
+    fta = models.IntegerField(help_text="Free Throws Attempted")
+    ft_pct = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(0), MaxValueValidator(100)], help_text="Free Throw Percentage")
+    oreb = models.IntegerField(help_text="Offensive Rebounds")
+    dreb = models.IntegerField(help_text="Defensive Rebounds")
+    reb = models.IntegerField(help_text="Total Rebounds")
+    ast = models.IntegerField(help_text="Assists")
+    tov = models.IntegerField(help_text="Turnovers")
+    stl = models.IntegerField(help_text="Steals")
+    blk = models.IntegerField(help_text="Blocks")
+    pf = models.IntegerField(help_text="Personal Fouls")
+    plus_minus = models.IntegerField(help_text="+/-")
+
+    def __str__(self):
+        return f"Stats for {self.player.name}"
+
+    class Meta:                            #not too sure about this as of right now
+        verbose_name = 'Stat'
+        verbose_name_plural = 'Stats'
